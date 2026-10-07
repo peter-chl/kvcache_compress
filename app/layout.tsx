@@ -1,17 +1,41 @@
 import type { Metadata } from "next";
-import type { ReactNode } from "react";
+import { Geist, Geist_Mono } from "next/font/google";
+import "./globals.css";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+const SITE_URL = "https://peter-chl.github.io/kvcache_compress";
+const DESCRIPTION =
+  "Technical reference for KV cache compression in LLM inference — what each method compresses, what it costs, and what its paper reports.";
 
 export const metadata: Metadata = {
-  title: "KV Cache Compression",
-  description: "A reference to KV cache compression methods for LLM inference.",
+  title: {
+    default: "KV Cache Compression — kvcache_compress",
+    template: "%s — kvcache_compress",
+  },
+  description: DESCRIPTION,
+  metadataBase: new URL(SITE_URL),
 };
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
-    <html lang="en">
-      <body style={{ fontFamily: "system-ui, sans-serif", margin: "0 auto", maxWidth: 640, padding: "4rem 1rem" }}>
-        {children}
-      </body>
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+    >
+      <body className="min-h-screen flex flex-col">{children}</body>
     </html>
   );
 }
