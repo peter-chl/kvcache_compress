@@ -1,5 +1,7 @@
 import SiteHeader from "@/app/components/SiteHeader";
 import SiteFooter from "@/app/components/SiteFooter";
+import MethodGrid from "@/app/components/MethodGrid";
+import { methods } from "@/data/methods";
 
 const AXES = [
   {
@@ -35,8 +37,9 @@ export default function Home() {
           </h1>
           <p className="max-w-2xl text-lg leading-relaxed text-muted">
             A technical reference for methods that shrink the key-value cache in
-            LLM inference. What each method compresses, what it costs, and what
-            its paper actually reports — with every number traced to a source.
+            LLM inference. How each algorithm works, what it keeps in the cache,
+            and what it trades away — described from the official code and
+            papers, with sources on every page.
           </p>
         </div>
       </section>
@@ -60,19 +63,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Methods — empty until the first verified entries land */}
-      <section className="flex-1">
-        <div className="mx-auto max-w-5xl px-6 py-16">
-          <h2 className="mb-8 text-sm font-semibold uppercase tracking-widest text-muted">
-            Methods
-          </h2>
-          <div className="rounded-lg border border-dashed border-border bg-surface/50 p-10 text-center">
-            <p className="text-sm text-muted">
-              Method pages are in progress.
-            </p>
-          </div>
-        </div>
-      </section>
+      <MethodGrid methods={methods} />
 
       <SiteFooter />
     </div>
